@@ -9,5 +9,5 @@
 
 int main(int argc, char **argv)
 {
-    error(argc, argv);
+    pid(argc, argv);
 }

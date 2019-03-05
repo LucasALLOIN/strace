@@ -8,9 +8,10 @@
 cc	=	gcc
 
 SRC	=	sources/main.c		\
-		sources/help.c
+		sources/help.c		\
+		sources/strace.c
 
-CFLAGS	=	-I./include/ -g -W -Wall -Werror
+CFLAGS	=	-I./include/ -g -W -Wall
 
 OBJ	=	$(SRC:.c=.o)
 
