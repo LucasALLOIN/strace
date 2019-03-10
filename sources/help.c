@@ -10,7 +10,8 @@
 int error(int argc, char **argv)
 {
     if (argc <= 1) {
-        fprintf(stderr, "no argument, see --help\n");
+        fprintf(stderr, "strace: must have PROG [ARGS] or -p PID\n");
+        fprintf(stderr, "Try 'strace -h' for more information.\n");
         exit(1);
     }
     if (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0) {
