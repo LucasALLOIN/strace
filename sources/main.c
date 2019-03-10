@@ -5,6 +5,7 @@
 ** main
 */
 
+#include <ctype.h>
 #include "strace.h"
 
 int rpid = 0;
@@ -58,6 +59,12 @@ int strace_by_pid(char *pid)
 {
     int mpid = atoi(pid);
 
+    for (int i = 0; pid[i]; i++) {
+        if (!isdigit(pid[i])) {
+            fprintf(stderr, "strace: Invalid process id: '%s'",pid);
+            exit (84);
+        }
+    }
     if (ptrace(PTRACE_ATTACH, mpid, NULL, NULL) == -1) {
         fprintf(stderr,
         "strace: attach: ptrace(PTRACE_SEIZE, %d): No such process", mpid);
@@ -73,7 +80,7 @@ int main(int argc, char **argv)
 
     error(argc, argv);
     if (strncmp(argv[1], "-", 1) == 0) {
-        if (strcmp(argv[1], "-p") == 0 && argc >= 2 && atoi(argv[2]) != 0) {
+        if (strcmp(argv[1], "-p") == 0 && argc >= 3) {
             signal(SIGINT, &sig_handler);
             signal(SIGTERM, &sig_handler);
             signal(SIGQUIT, &sig_handler);
