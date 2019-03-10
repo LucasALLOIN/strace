@@ -2,7 +2,7 @@
 ## EPITECH PROJECT, 2017
 ## Makefile
 ## File description:
-##
+## desc
 ##
 
 cc	=	gcc
